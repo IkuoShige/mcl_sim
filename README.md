@@ -17,9 +17,9 @@ mcl_simは、2次元平面上で仮想ロボットが円を描くように移動
 ## インストール
 
 ```sh
-$ git clone git@github.com:IkuoShige/mcl_sim.git -b feat/probabilistic-robotics-report
+$ git clone https://github.com/IkuoShige/mcl_sim.git -b feat/probabilistic-robotics-report
 $ cd mcl_sim
-$ mkdir build
+$ mkdir build && cd build
 $ cmake ..
 $ make
 $ cd ../
