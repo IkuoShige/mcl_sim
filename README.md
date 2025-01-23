@@ -1,20 +1,46 @@
-# mcl_sim
+# mcl_sim: Probabilistic Robotics Simulation
 
-# 依存関係
-- Qt5
-- [yaml-cpp](https://github.com/jbeder/yaml-cpp)
-- gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.2)
+mcl_simは、2次元平面上で仮想ロボットが円を描くように移動し、自己位置推定を行うパッケージです。
 
-# demo
+## 概要
 
-```bash
-cd mcl_sim/build
-cmake ..
-make
-./mvc
+このパッケージは、モンテカルロローカライゼーション（MCL）アルゴリズムを使用して、ロボットの自己位置推定をシミュレートします。ロボットは2次元平面上を移動し、センサーからの観測データを使用して自身の位置を推定します。
+
+## 特徴
+
+- 仮想ロボットの移動シミュレーション
+- MCLアルゴリズムによる自己位置推定
+- PyQt5を使用した視覚化
+
+## インストール
+
+```sh
+$ git clone git@github.com:IkuoShige/mcl_sim.git -b feat/probabilistic-robotics-report
+$ cd mcl_sim
+$ mkdir build
+$ cmake ..
+$ make
+$ cd ../
+$ uv sync
 ```
-キーボード操作でrobotを動かすことで, センサデータを確認可能
+
+> **Note**
+> uvのinstall
+> ```sh
+> $ curl -LsSf https://astral.sh/uv/install.sh | sh
+> $ source $HOME/.cargo/env
+> ```
+> [公式ドキュメント](https://docs.astral.sh/uv/getting-started/installation/)を参照
 
 
-# ライセンス
-このソフトウェアパッケージは，MITライセンスの下，再頒布および使用が許可されます．
+## 使い方
+
+`mcl_display_pyqt.py`を実行し, シミュレーションを開始.
+
+```sh
+$ uv run mcl_display_pyqt.py
+```
+
+## ライセンス
+
+このプロジェクトはMITライセンスの下で公開されています。詳細については、LICENSEファイルを参照してください。

@@ -1,43 +1,50 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.14)
-# CMAKE_MINIMUM_REQUIRED(VERSION 2.8.11)
+cmake_minimum_required(VERSION 3.15)
+# project(mcl_call)
+project(mcl_module)
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11")
+set(CMAKE_CXX_STANDARD 14)
 
-SET(CMAKE_AUTOMOC ON)
-SET(CMAKE_INCLUDE_CURRENT_DIR ON)
-FIND_PACKAGE(Qt5Widgets REQUIRED)
-
-SET(helloqt_SOURCES main.cpp helloqtwindow.cpp)
-SET(helloqt_HEADERS helloqtwindow.h)
-# SET(helloqt_UIS helloqtwindow.ui)
-SET(helloqt_UIS mainwindow.ui)
-find_package(OpenCV REQUIRED)
-set(yaml-cpp_DIR "/usr/local/lib/cmake/yaml-cpp")
-find_package(yaml-cpp REQUIRED)
-QT5_WRAP_UI(helloqt_UIS_HEADERS ${helloqt_UIS})
-
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+find_package(pybind11 CONFIG REQUIRED)
 find_package(Eigen3 REQUIRED)
 set(Eigen3_LIBRARIES Eigen3::Eigen)
-find_package(Python3 COMPONENTS Development NumPy REQUIRED)
+find_package(OpenCV REQUIRED)
 
-add_executable(mvc 
-	${helloqt_UIS_HEADERS}
-	MVC/mcl_view.cpp
-	MVC/mcl_view.hpp
-	MVC/main.cpp
-	MVC/mcl_model.cpp
-	MVC/mcl_model.hpp
-	MVC/mcl_controller.cpp
-	MVC/mcl_controller.hpp
-	MVC/types.hpp
-	MVC/field.cpp
-	MVC/field.hpp
-	MVC/item.hpp
-	MVC/item.cpp
-	MVC/preprocessor.cpp
-	MVC/preprocessor.hpp
-)
+pybind11_add_module(mcl_module mcl.cpp mcl.h)
+target_link_libraries(mcl_module PUBLIC ${OpenCV_LIBRARIES} ${Eigen3_LIBRARIES})
 
-target_link_libraries(mvc ${OpenCV_LIBS} ${YAML_CPP_LIBRARIES}
-	Qt5::Gui
-	Qt5::Core
-	Qt5::Widgets
-)
+# find_package(SWIG REQUIRED)
+# find_package(PythonLibs REQUIRED)
+
+# include(${SWIG_USE_FILE})# need for swig_add_module
+# include(GenerateExportHeader)
+# include_directories(
+#     ${CMAKE_CURRENT_SOURCE_DIR}
+#     ${PROJECT_BINARY_DIR}
+#     ${PYTHON_INCLUDE_PATH}
+# )
+
+# set(EXAM_SRCS
+#     mcl_call.h
+#     mcl_call.cpp
+#     mcl.h
+#     mcl.cpp
+# )
+# set(INTERFACE_FILES
+#     mcl_call.i
+# )
+# set_source_files_properties(${INTERFACE_FILES} PROPERTIES CPLUSPLUS ON)
+# set_source_files_properties(${INTERFACE_FILES} PROPERTIES SWIG_FLAGS "-includeall")
+# set_property(SOURCE ${INTERFACE_FILES} PROPERTY SWIG_COMPILE_OPTIONS -std=c++11 -fPIC -fdiagnostics-color=auto)
+# set(SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE)
+
+# swig_add_library(mcl_call LANGUAGE python SOURCES ${INTERFACE_FILES}
+#     ${EXAM_SRCS}
+# )
+# target_link_libraries(mcl_call
+#     ${PYTHON_LIBRARIES}
+# )
+# set_target_properties(mcl_call PROPERTIES
+#     SWIG_USE_TARGET_INCLUDE_DIRECTORIES ON
+# )
+
