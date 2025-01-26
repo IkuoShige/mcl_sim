@@ -217,7 +217,7 @@ void MCL::estimate_robot_pose()
     this->robot_pose_x = x;
     this->robot_pose_y = y;
     this->robot_pose_theta = mod_yaw(theta_);
-    std::cout << "Estimated pose: " << robot_pose_x << ", " << robot_pose_y << ", " << robot_pose_theta << std::endl;
+    // std::cout << "Estimated pose: " << robot_pose_x << ", " << robot_pose_y << ", " << robot_pose_theta << std::endl;
 }
 
 void MCL::resample_particles()
