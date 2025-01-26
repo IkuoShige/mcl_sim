@@ -1,12 +1,14 @@
-# mcl_sim: Probabilistic Robotics Simulation
+# mcl_sim: Soccer field landmark
 
-mcl_simは、2次元平面上で仮想ロボットが円を描くように移動し、自己位置推定を行うパッケージです。
+mcl_simは、2次元平面上で仮想ロボットが円を描くように移動し, 自己位置推定を行うパッケージです。
 
-![Simulation](video.gif)
+<img src="video.gif" alt="Simulation" width="800" height="600">
 
 ## 概要
 
-このパッケージは、モンテカルロローカライゼーション（MCL）アルゴリズムを使用して、ロボットの自己位置推定をシミュレートします。ロボットは2次元平面上を移動し、センサーからの観測データを使用して自身の位置を推定します。
+このパッケージは、モンテカルロローカライゼーション（MCL）アルゴリズムを使用して, ロボットの自己位置推定をシミュレートします.
+ロボットは2次元平面上を移動し, センサーからの観測データを使用して自身の位置を推定します.
+Soccer field のゴールポストや, コーナーなどのポールをランドマークとします.
 
 ## 特徴
 
@@ -37,10 +39,10 @@ $ uv sync
 
 ## 使い方
 
-`mcl_display_pyqt.py`を実行し, シミュレーションを開始.
+`soccer-field-visualizer.py`を実行し, シミュレーションを開始.
 
 ```sh
-$ uv run mcl_display_pyqt.py
+$ uv run soccer-field-visualizer.py
 ```
 
 ## ライセンス
